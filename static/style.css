@@ -1,0 +1,108 @@
+/* Color Theme Swatches in Hex */
+:root {
+    --nuance-1-hex: #52C2DE;
+    --nuance-2-hex: #3A8A9E;
+    --nuance-3-hex: #1E4751;
+    --nuance-4-hex: #23525E;
+    --nuance-5-hex : #153138
+}
+html,body{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: var(--nuance-5-hex);
+    color: var(--nuance-1-hex);
+}
+
+.navbar{
+    background-color: var(--nuance-4-hex);
+    width: 100% !important;
+}
+.navbar-brand{
+    color: var(--nuance-1-hex);
+    display: inline-block !important;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 25px;
+}
+a:hover{
+    color: var(--nuance-1-hex);;
+}
+
+.card-header{
+    background-color: var(--nuance-4-hex);
+}
+.card-body{
+    background-color: var(--nuance-3-hex);
+}
+.card-footer{
+    background-color: var(--nuance-4-hex);
+}
+input{
+    border:1px solid;
+    border-color: var(--nuance-1-hex);
+    background-color:inherit !important;
+}
+
+input{
+    color: #fff !important;
+}
+.ofr-title{
+    background-color: var(--nuance-4-hex);
+}
+.ofr-box{
+    background-color: var(--nuance-3-hex);
+    padding-bottom: 20px;
+}
+.price-item{
+    background-color: var(--nuance-1-hex);
+    color: var(--nuance-5-hex);
+    border-radius: 0px 40px 0px 40px;
+    border-color: #fff;
+    box-shadow: 6px 3px 3px #000;
+    cursor: pointer;
+}
+.price-item-x{
+    background-color: var(--nuance-1-hex);
+    color: var(--nuance-5-hex);
+    border-radius: 40px 0px 40px 0px;
+    border-color: #fff;
+    box-shadow: 6px 3px 3px #000;
+    cursor: pointer;
+}
+.price-item-x:hover{
+    background-color: var(--nuance-5-hex);
+    color: var(--nuance-1-hex);
+    border-radius: 40px 0px 40px 0px;
+     border-style: dotted;
+    border-color: #fff;
+    box-shadow: 6px 3px 3px #000;
+    cursor: pointer;
+}
+.price-item:hover{
+    background-color: var(--nuance-5-hex);
+    color: var(--nuance-1-hex);
+    border-radius: 0px 40px 0px 40px;
+    border-color: #fff;
+    border-style: dotted;
+    cursor: pointer;
+    box-shadow: 6px 3px 3px #000;
+}
+
+
+
+.price{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 0px !important;
+}
+.hrs{
+    margin-top: 0px !important;
+    font-size: 15px;
+    font-weight: normal;
+}

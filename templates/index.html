@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAXOS 5G Wifi 10Bob</title>
+    <link href="{{ url_for('static', filename = 'bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename = 'sweetalert2.all.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'axios/unpkg/axios.min.js') }}"></script>
+</head>
+<body class="nuance-5-hex">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <h2 class="navbar-brand" href="#">NAXOS 5G Ultra Wi-Fi</h2>
+        </div>
+    </nav>
+
+    <div class="body">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-4">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            I Have a code
+                        </div>
+                        <div class="card-body">
+                            <label>Enter your subscription code:</label>
+                            <input type="text" id="resumeId" class="form-control form-control-sm" placeholder=""/>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-info btn-sm mt-3 col-6" onclick="resumeAccess()">Connect</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 ofr-title text-center mt-3 py-3">
+                    Buy Wifi offer
+                </div>
+                <div class="col-12 text-center ofr-box">
+                    <div class="row text-center mt-3">
+                        <div class="col-6 text-center">
+                            <div class="card price-item-x" onclick="handleSubscription(60)">
+                                <p class="price">10 Ksh</p>
+                                <p class="hrs">For 1 hour</p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="card price-item" onclick="handleSubscription(180)">
+                                <p class="price">15 Ksh</p>
+                                <p class="hrs">For 3 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center mt-3">
+                        <div class="col-6 text-center">
+                            <div class="card price-item-x" onclick="handleSubscription(780)">
+                                <p class="price">20 Ksh</p>
+                                <p class="hrs">For 13 hours</p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="card price-item" onclick="handleSubscription(1440)">
+                                <p class="price">25 Ksh</p>
+                                <p class="hrs">For 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleSubscription(duration) {
+            Swal.fire({
+                title: 'Enter your mobile number',
+                input: 'text',
+                inputLabel: 'Mobile Number',
+                inputPlaceholder: '07XXXXXXXX',
+                showCancelButton: true,
+                confirmButtonText: 'Pay'
+            }).then((result) => {
+                if (result.isConfirmed && result.value) {
+                    const phone = result.value;
+                    axios.post('/subscribe', { duration, phone })
+                        .then(response => {
+                            const id = response.data.id;
+                            Swal.fire('Payment Successful!', 'Your ID: ' + id, 'success');
+                        })
+                        .catch(() => {
+                            Swal.fire('Error', 'Subscription failed', 'error');
+                        });
+                }
+            });
+        }
+
+        function resumeAccess() {
+            const id = document.getElementById('resumeId').value;
+            axios.post('/resume', { id })
+                .then(response => {
+                    if (response.data.success) {
+                        Swal.fire('Welcome back!', response.data.message, 'success');
+                    } else {
+                        Swal.fire('Error', response.data.message, 'error');
+                    }
+                })
+                .catch(() => {
+                    Swal.fire('Error', 'Something went wrong', 'error');
+                });
+        }
+    </script>
+
+    <script src="{{ url_for('static', filename = 'bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
+</html>
